@@ -1,8 +1,16 @@
 body {
     margin: 0;
     padding: 10px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
     min-width: 400px;
+}
+
+:root {
+    --primary: rgb(97, 168, 97);
+    --primary-light: rgb(124, 215, 124);
+    --danger: #fa5252;  
+    --gray: #868e96;
+    --border: #e9ecef;
 }
 
 input {
@@ -10,11 +18,11 @@ input {
     padding: 10px;
     box-sizing: border-box;
     margin-bottom: 5px;
-    border-color: rgb(124, 215, 124);
+    border-color: var(--primary-light);
 }
 
 button {
-    background: rgb(97, 168, 97);
+    background: var(--primary);
     color: rgb(255, 255, 255);
     padding: 10px 20px;
     font-weight: bold;
@@ -22,20 +30,127 @@ button {
 
 #delete-btn {
     background: white;
-    color: rgb(97, 168, 97);
+    color: var(--primary);
 }
 
+#delete-btn:hover {
+    background-color: var(--danger);
+    color: white;
+}
+
+
 ul {
-    margin-top: 20px;
+    margin-top: 15px;
     list-style: none;
     padding-left: 0;
 }
 
-li {
+/* Each line of post*/
+.post-li {
     margin-top: 5;
+    display: flex;
+    flex-direction: column;
+
+}
+/*Link, Edit Btn, Delete Btn*/
+.post-row {
+    display: flex;
+    align-items: center;
+    border-bottom: .5px solid var(--primary-light);
+    padding-bottom: 5px;
 }
 
-li a {
-    color: rgb(97, 168, 97);
+/*Link takes up most of the third*/
+.post-row a {
+    color: var(--primary);
     font-size: medium;
+    padding-left: 10px;
+    flex:1;
+}
+
+.delete-post-btn {
+    background: none;
+    color: var(--gray);
+    opacity: 0;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s;
+    padding: 0;
+}
+
+.edit-post-btn {
+    background: none;
+    color: var(--gray);
+    border: none;
+    opacity: 0;
+}
+
+
+.post-li:hover .delete-post-btn {
+    opacity: 1;
+}
+
+.post-li:hover .edit-post-btn {
+    opacity: 1;
+}
+
+.delete-post-btn:hover {
+    color: var(--danger);
+}
+
+.edit-post-btn:hover {
+    color: var(--primary);
+}
+
+/* Edit Post Container*/
+.edit-post .active {
+    margin-top: 8px;
+    padding: 10px;
+    border: 1px solid var(--border);
+    display: none;
+}
+
+#hook-input {
+    height: 70px;
+}
+
+.filter-radio {
+    display: flex;
+    float: left;
+    margin-top: 10px;
+}
+
+.save-edit-btn {
+    display: flex;
+    margin-top: 50px;
+}
+
+label {
+    padding-right: 20px;
+}
+
+.filters {
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+    border-top: 1px solid var(--border);
+}
+
+.filter {
+    padding: 5px 3px;
+    cursor: pointer;
+    color: var(--gray);
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.filter:hover {
+    color: var(--primary);
+}
+
+.filter.active {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+    font-weight: 500;
 }

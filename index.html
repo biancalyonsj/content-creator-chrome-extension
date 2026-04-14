@@ -1,13 +1,46 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
         <input type="text" id="input-el" placeholder="Link">
         <button id="input-btn">Save Input</button>
-        <button id="tab-btn">Save Tab</button>
+        <button id="profile-btn">Save Profile</button>
         <button id="delete-btn">Delete All</button>
-        <ul id="ul-el"></ul>
+        <!-- JavaScript Render() to add li post links -->
+        <ul id="post-ul">
+           <!--
+            <li class="post-li">
+                <div class="post-row">
+                    <a href="www.example.com">Example</a>
+                    <button class="edit-post-btn"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="delete-post-btn"><i class="fas fa-times"></i></button>
+                </div>
+                <-- editDiv.style.display = "block" ---
+                <div class="edit-post">
+                    <input type="text" id="rename-input" placeholder="Rename">
+                    <p>Rename</p>
+                    <input type="text" id="hook-input" placeholder="Hook">
+                    <p>Hook</p>
+                    <div class="filter-radio">
+                        <input type="radio" name="filter-post" id="ig-post">
+                        <label for="ig-post">Instagram</label>
+
+                        <input type="radio" name="filter-post" id="tiktok-post">
+                        <label for="tiktok-post">TikTok</label>
+                    </div>
+                    <button class="save-edit-btn">Save Edit</button>
+                </div>
+            </li>
+        -->
+        </ul>
+        <!-- Tabs for All, IG, TikTok-->
+         <div class="filters">
+            <span class="filter active" data-filter="all">All</span>
+            <span class="filter" data-filter="instagram">IG</span>
+            <span class="filter" data-filter="tiktok">TikTok</span>
+         </div>
 
 
         <script src="script.js"></script>
