@@ -68,14 +68,21 @@ function renderPost(){
         const a = document.createElement('a');
         // open link in new tab
         a.setAttribute('target', '_blank');
-        // Create the text node for anchor element. Truncate if longer than 51 chars
-        let link;
-        if ((post.url)?.length > urlStringLen){
-            const shortenLink = (post.url).substring(0, urlStringLen - 3) + '...';
-            link = document.createTextNode(shortenLink);
+        // create a link for ui
+        let displayText;
+        // if post rename exists, display it to the user
+        if (post.rename && post.rename.trim() !== ''){
+            displayText = post.rename;
         } else {
-            link = document.createTextNode(post.url);
+            displayText = post.url;
         }
+
+        // Create the text node for anchor element. Truncate if longer than 51 chars
+        if (displayText?.length > urlStringLen){
+            displayText = displayText.substring(0, urlStringLen - 3) + '...';
+        } 
+        // add name to element
+        const link = document.createTextNode(displayText);
         
         // Append the text node to anchor element.
         a.appendChild(link);
@@ -244,7 +251,8 @@ function savePost(id){
     }
     // update rename, only grab inputs inside the correct post
     const rename = postLiElem.querySelector('.rename-input');
-    if (rename){
+    console.log(rename.value);
+    if (rename && ((rename.value).trim() !== '')){
         editPost.rename = rename.value;
     }
     
