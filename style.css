@@ -126,7 +126,13 @@ ul {
 }
 
 .hook-input {
-    height: 70px;
+    width: 100%;
+    min-height: 70px;
+    resize: vertical;
+    box-sizing: border-box;
+    padding: 10px;
+    font-family: sans-serif;
+    border: 2px solid black; 
 }
 
 .filter-radio {

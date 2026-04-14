@@ -156,8 +156,7 @@ function renderEdit(id){
     renameInput.setAttribute('placeholder', 'Rename URL');
 
     // create inputs for hook
-    const hookInput = document.createElement('input');
-    hookInput.type = 'text';
+    const hookInput = document.createElement('textarea');
     hookInput.classList.add('hook-input');
     hookInput.setAttribute('placeholder', 'Add Video Hook');
     // retrieve user hook input and update input box
