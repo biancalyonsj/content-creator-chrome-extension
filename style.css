@@ -53,6 +53,8 @@ ul {
     margin-top: 15px;
     list-style: none;
     padding-left: 0;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 /* Each line of post*/
@@ -72,7 +74,7 @@ ul {
 
 /*Link takes up most of the third*/
 .post-row a {
-    color: var(--primary);
+    color: black;
     font-size: medium;
     padding-left: 10px;
     flex:1;

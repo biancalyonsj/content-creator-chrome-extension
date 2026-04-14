@@ -306,6 +306,8 @@ deleteAllButton.addEventListener('click', () =>{
     localStorage.clear();
     // clear myPosts array
     myPosts = [];
+    // reset filter ui
+    filterCategory = 'all';
     // clear DOM element
     renderPost();
 })
