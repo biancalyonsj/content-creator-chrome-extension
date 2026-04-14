@@ -3,6 +3,7 @@ const deleteAllButton = document.getElementById('delete-btn');
 const inputEl = document.getElementById('input-el');
 const postUlElement = document.getElementById('post-ul');
 const profileButton = document.getElementById('profile-btn');
+const filtersSpan = document.querySelectorAll('.filter');
 
 // user notes DOM elements
 const renameInput = document.getElementById('rename-input');
@@ -15,6 +16,7 @@ const urlStringLen = 51;
 
 // contains post objects with values for urls and hooks
 let myPosts = [];
+let filterCategory = 'all';
 
 // retrieve urls added by user
 const postsFromLocalStorage = JSON.parse(localStorage.getItem('myPosts'));
@@ -49,9 +51,16 @@ function createPost(url){
 function renderPost(){
     // clear the current list of ul elements
     postUlElement.innerHTML = '';
+    // filter by category
+    let filteredPosts;
+    if (filterCategory === 'all'){
+        filteredPosts = myPosts;
+    } else {
+        filteredPosts = myPosts.filter((post) => post.social === filterCategory);
+    }
 
     // for each post url, create nested li and div elements
-    myPosts.forEach((post) => {
+    filteredPosts.forEach((post) => {
         // create a new li element for the post
         const postLi = document.createElement('li');
         // assign class name
@@ -311,5 +320,27 @@ profileButton.addEventListener('click', ()=>{
     })
 
 });
+
+/** 
+**  Helper function to remove active class from filter span
+**/
+function updateFilter(){
+    filtersSpan.forEach(filter => {
+        filter.classList.remove('active');
+    })
+}
+
+filtersSpan.forEach(filter => {
+    filter.addEventListener('click', ()=>{
+        // update current filter
+        filterCategory = filter.getAttribute('data-filter');
+        // remove active class from other filters
+        updateFilter();
+        // update filter the user clicked on with active class
+        filter.classList.add('active');
+        // display posts to user
+        renderPost();
+    })
+})
 
 
