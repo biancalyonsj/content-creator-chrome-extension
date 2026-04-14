@@ -28,6 +28,16 @@ button {
     font-weight: bold;
 }
 
+#input-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0,255,255,0.5);    
+}
+
+#input-button:hover::before {
+  opacity: 1;
+  transform: rotate(-45deg) translateY(100%);
+}
+
 #delete-btn {
     background: white;
     color: var(--primary);
@@ -104,14 +114,18 @@ ul {
 }
 
 /* Edit Post Container*/
-.edit-post .active {
+.edit-post {
     margin-top: 8px;
     padding: 10px;
     border: 1px solid var(--border);
     display: none;
 }
 
-#hook-input {
+.edit-post.active {
+    display: block;
+}
+
+.hook-input {
     height: 70px;
 }
 

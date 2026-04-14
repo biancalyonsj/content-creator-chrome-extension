@@ -27,9 +27,11 @@ if (postsFromLocalStorage){
 }
 
 /** 
-    Create the post object
+**  Create the post object
 **/
 function createPost(url){
+    // check if url is empty or full of spaces
+    if (url.trim() === '') return;
     let post = {
         url,
         id: Date.now(),
@@ -42,7 +44,7 @@ function createPost(url){
 }
 
 /** 
-    Display the URLs the user added to their list
+**  Display the URLs the user added to their list
 **/
 function renderPost(){
     // clear the current list of ul elements
@@ -64,12 +66,13 @@ function renderPost(){
 
         // anchor element
         const a = document.createElement('a');
+        // open link in new tab
+        a.setAttribute('target', '_blank');
         // Create the text node for anchor element. Truncate if longer than 51 chars
         let link;
-        if ((post.url).length > urlStringLen){
+        if ((post.url)?.length > urlStringLen){
             const shortenLink = (post.url).substring(0, urlStringLen - 3) + '...';
             link = document.createTextNode(shortenLink);
-
         } else {
             link = document.createTextNode(post.url);
         }
@@ -108,6 +111,8 @@ function renderPost(){
 **  Remove post from list
 **/
 function deletePost(id){
+    // confirm if user wants to delete post
+
     // remove post from list
     myPosts = myPosts.filter((post) => post.id !== id);
     // save update to local storage
@@ -120,6 +125,23 @@ function deletePost(id){
 **  Display the edit block under the post url
 **/
 function renderEdit(id){
+    // retrieve current post to accumulate data from previous edits
+    let currentPost = myPosts.filter((post) => post.id === id)[0];
+    // get li element
+    let currentPostLi = document.getElementById(String(id));
+    // get corresponding edit container for current post li element, direct child
+    const existingEdit = currentPostLi.querySelector('.edit-post');
+    // close all other open edit panels
+    document.querySelectorAll('.edit-post.active').forEach((el) => {
+        el.classList.remove('active');
+    });
+    // check if edit post already exists to prevent duplication
+    if (existingEdit){
+        existingEdit.classList.toggle('active');
+        // do not create another DOM
+        return;
+    }
+
     // create div container for hook and rename input
     const editPost = document.createElement('div');
     // add class name
@@ -130,19 +152,16 @@ function renderEdit(id){
     // create inputs for rename 
     const renameInput = document.createElement('input');
     renameInput.type = 'text';
-    renameInput.id = 'rename-input';
+    renameInput.classList.add('rename-input');
     renameInput.setAttribute('placeholder', 'Rename URL');
-    //const pRename = document.createElement('p');
-    //pRename.textContent = 'Rename URL';
-
 
     // create inputs for hook
     const hookInput = document.createElement('input');
     hookInput.type = 'text';
-    hookInput.id = 'hook-input';
+    hookInput.classList.add('hook-input');
     hookInput.setAttribute('placeholder', 'Add Video Hook');
-    //const pHook = document.createElement('p');
-    //pHook.textContent = 'Hook';
+    // retrieve user hook input and update input box
+    if ((currentPost.hook).trim() !== '') hookInput.value = currentPost.hook;
 
     // add inputs and p elements to edit div container
     editPost.appendChild(renameInput)
@@ -150,7 +169,6 @@ function renderEdit(id){
     editPost.appendChild(hookInput)
     //editPost.appendChild(pHook)
 
-    // ******** TODO: Fix Radio Buttons --  should only be able to select 1
     // radio buttons to filter social media
     const radioFilter = document.createElement('div');
     radioFilter.classList.add('filter-radio');
@@ -158,7 +176,10 @@ function renderEdit(id){
     // create ig radio button and label
     const igFilter = document.createElement('input');
     igFilter.setAttribute('type', 'radio');
-    igFilter.setAttribute('id', 'ig-post');
+    //igFilter.id = `ig-post-${id}`;
+    // prevent radios from different posts from interfering with each other
+    igFilter.setAttribute('name', `filter-post-${id}`);
+    igFilter.setAttribute('value', 'instagram');
     const igLabel = document.createElement('label');
     const igLabelText = document.createTextNode('Instagram');
     igLabel.textContent = 'Instagram';
@@ -167,11 +188,23 @@ function renderEdit(id){
     // create tiktok radio button
     const tiktokFilter = document.createElement('input');
     tiktokFilter.setAttribute('type', 'radio');
-    tiktokFilter.setAttribute('id', 'tiktok-post');
+    tiktokFilter.setAttribute('name', `filter-post-${id}`);
+    tiktokFilter.setAttribute('value', 'tiktok');
     const tiktokLabel = document.createElement('label');
     const tiktokLabelText = document.createTextNode('TikTok');
     tiktokLabel.textContent = 'TikTok';
     tiktokLabel.setAttribute('for', 'filter-post');
+    // retrieve user social filter and check the corresponding radio button
+    switch(currentPost.social){
+        case 'instagram':
+            igFilter.checked = true;
+            break;
+        case 'tiktok':
+            tiktokFilter.checked = true;
+            break;
+        default:
+            break;
+    }
 
     // append radio buttons and labels to div
     radioFilter.appendChild(igFilter);
@@ -182,40 +215,60 @@ function renderEdit(id){
     // append radio filter to edit post
     editPost.appendChild(radioFilter);
 
-
     // save all edits
     const saveButton = document.createElement('button');
     saveButton.classList.add("save-edit-btn");
     saveButton.textContent = 'Save Edit'
-    saveButton.addEventListener("click", () => savePost(id)); 
+    saveButton.addEventListener("click", () => {
+        savePost(id);
+    }); 
 
     // nest all edit post elements in edit post container div 
     editPost.appendChild(saveButton);
 
-    // find the correct post to display edit div
-    const postLiElem = document.getElementById(String(id));
-
     // nest edit post container div below corresponding post
-    postLiElem.appendChild(editPost);
+    currentPostLi.appendChild(editPost);
 }
 
 /** 
 **  Display the edit block under the post url
 **/
 function savePost(id){
-    let editPost = myPosts.filter((post) => post.id === id);
-    // update rename
-    // update hook
+    // find correct current post
+    let editPost = myPosts.filter((post) => post.id === id)[0];
+    // find correct post to display edit div
+    const postLiElem = document.getElementById(String(id));
+    // update hook, only grab inputs inside the correct post
+    const hook = postLiElem.querySelector('.hook-input');
+    if (hook){
+        editPost.hook = hook.value;
+    }
+    // update rename, only grab inputs inside the correct post
+    const rename = postLiElem.querySelector('.rename-input');
+    if (rename){
+        editPost.rename = rename.value;
+    }
+    
     // update filter
+    const radios = postLiElem.querySelectorAll('input[name^="filter-post"]');
+    radios.forEach((radio) => {
+        if (radio.checked) {
+            // update post object social value
+            editPost.social = radio.value;
+            // update checked
+        }
+    })
+
     // add post to correct filter
 
     // save edits
-    //localStorage.setItem('myPosts', JSON.stringify(myPosts));
+    localStorage.setItem('myPosts', JSON.stringify(myPosts));
 
     // close the ui
-    const savePost = document.querySelector('.edit-post');
-    savePost.classList.remove('active');
-
+    const savePost = postLiElem.querySelector('.edit-post');
+    if (savePost){
+        savePost.classList.remove('active');
+    }
     // display posts to user
     renderPost();
 }
