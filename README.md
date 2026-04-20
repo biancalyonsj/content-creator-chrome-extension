@@ -1,6 +1,6 @@
 <h1 align="center">Content Creator Chrome Extension</h1>
 
-![image alt](https://github.com/biancalyonsj/content-creator-chrome-extension/blob/390f85a6066dce11a850e3ae2053bb7d2eaa1f20/extention_no_links.jpg)
+![image alt](https://github.com/biancalyonsj/content-creator-chrome-extension/blob/ffd534f82f330c1d76cd6c05b952e10bf0f218cf/chrome_demo1.jpg)
 
 <p> Created a productivity-focused Chrome extension designed to help content creators capture, organize, and analyze social media posts for inspiration. 
    This tool enables users to save posts directly from their browser, add custom metadata (hooks, titles, platform tags), and 
@@ -8,7 +8,7 @@
   optimize their content for higher audience retention and growth.
 </p>
   
-![image alt](https://github.com/biancalyonsj/content-creator-chrome-extension/blob/390f85a6066dce11a850e3ae2053bb7d2eaa1f20/extention_w_links.jpg)
+![image alt](https://github.com/biancalyonsj/content-creator-chrome-extension/blob/ffd534f82f330c1d76cd6c05b952e10bf0f218cf/chrome_demo2.jpg)
 
 <h2>Key Features</h2>
 
