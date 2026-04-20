@@ -69,5 +69,5 @@ It enables creators to not only save posts, but also analyze what makes them eff
 </p>
 
 <p>
-The project demonstrates real-world frontend engineering skills including state management, data persistence, dynamic UI rendering, and integration with browser APIs—all applied to solving a practical problem for modern content creators.
+The project demonstrates real-world frontend engineering skills including state management, data persistence, dynamic UI rendering, and integration with browser APIs. By applying these core concepts, I was able to solve a practical problem for modern content creators.
 </p>
