@@ -1,14 +1,38 @@
 <h1 align="center">Content Creator Chrome Extension</h1>
 
 ![image alt](https://github.com/biancalyonsj/content-creator-chrome-extension/blob/ffd534f82f330c1d76cd6c05b952e10bf0f218cf/chrome_demo1.jpg)
+  
+![image alt](https://github.com/biancalyonsj/content-creator-chrome-extension/blob/ffd534f82f330c1d76cd6c05b952e10bf0f218cf/chrome_demo2.jpg)
 
 <p> Created a productivity-focused Chrome extension designed to help content creators capture, organize, and analyze social media posts for inspiration. 
    This tool enables users to save posts directly from their browser, add custom metadata (hooks, titles, platform tags), and 
   filter content to streamline research and improve content strategy. The goal is to help creators study viral hooks so that they can
   optimize their content for higher audience retention and growth.
 </p>
-  
-![image alt](https://github.com/biancalyonsj/content-creator-chrome-extension/blob/ffd534f82f330c1d76cd6c05b952e10bf0f218cf/chrome_demo2.jpg)
+<h2>Why This Project Matters</h2>
+
+<p>
+Instagram's CEO Adam Mosseri has repeatedly emphasized that the first 3 seconds of a Reel are critical. That's your only opportunity to stop users from scrolling past your video. 
+
+If you want a better chance at going viral, you need a strong hook. 
+
+People in your niche have already figured out what works. 
+
+By searching for similar content on Instagram, you can find top performing creators in your niche and study their high performing videos. 
+I built a Chrome Extension using vanilla JavaScript to help small content creators:
+</p>
+<ul>
+<li>Save and organize viral posts they find while researching their niche</li>
+<li>Revisit high-performing content across platforms</li>
+<li>Break down hooks that consistently hook viewers past the critical first seconds</li>
+</ul>
+<p>
+The goal isn’t just to save Instagram or TikTok posts. It’s to really understand why the hook works and try to incorporate that in your own content.
+</p>
+
+<p>
+This project demonstrates real-world frontend engineering skills including state management, data persistence, dynamic UI rendering, and integration with browser APIs. By applying these core concepts, I was able to solve a practical problem for modern content creators.
+</p>
 
 <h2>Key Features</h2>
 
@@ -60,14 +84,3 @@
 <li>Built inline editing functionality with dynamically injected input fields</li>
 <li>Managed UI state transitions (active edit panels, filters) for a smooth user experience</li>
 </ul>
-
-<h2>Why This Project Matters</h2>
-
-<p>
-This extension goes beyond basic bookmarking by introducing structure and intent to content consumption. 
-It enables creators to not only save posts, but also analyze what makes them effective by storing hooks, categorizing platforms, and organizing inspiration in a way that supports content strategy and brand growth.
-</p>
-
-<p>
-The project demonstrates real-world frontend engineering skills including state management, data persistence, dynamic UI rendering, and integration with browser APIs. By applying these core concepts, I was able to solve a practical problem for modern content creators.
-</p>
